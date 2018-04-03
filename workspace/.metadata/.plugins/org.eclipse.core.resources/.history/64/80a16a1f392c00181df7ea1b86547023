@@ -1,0 +1,83 @@
+package paquete;
+
+import java.util.ArrayList;
+/**
+ * Clase que representa un nodo del arbol
+ * @author Alberto
+ *
+ */
+public class Nodo {
+
+	/**
+	 * Camino por el cual se llega a este nodo (será null en caso del nodo padre)
+	 */
+	private String camino;
+	/**
+	 * Resultado del nodo, que puede ser positivo, negativo, o un atributo
+	 */
+	private String resultado;
+	/**
+	 * Hijos que puede tener el nodo (en caso de que resultado sea un atributo)
+	 */
+	private ArrayList<Integer> hijos;
+	/**
+	 * Tabla de decision del nodo
+	 */
+	private Tabla tabla;
+	/**
+	 * Padre de este nodo
+	 */
+	private int padre;
+	
+	public Nodo () {
+		camino = null;
+		resultado = null;
+		hijos = new ArrayList<Integer>();
+		tabla = null;
+		padre = -1;
+	}
+	
+	public String getCamino () {
+		return camino;
+	}
+	
+	public String getResultado () {
+		return resultado;
+	}
+	
+	public ArrayList<Integer> getHijos() {
+		return hijos;
+	}
+	
+	public Tabla getTabla () {
+		return tabla;
+	}
+	
+	public int getPadre () {
+		return padre;
+	}
+	
+	public void setCamino (String camino) {
+		this.camino = camino;
+	}
+	
+	public void setResultado (String resultado) {
+		this.resultado = resultado;
+	}
+	
+	public void addHijo (int hijo) {
+		hijos.add(hijo);
+	}
+	
+	public void setTabla (Tabla tabla) {
+		this.tabla = tabla;
+	}
+	
+	public void setPadre (int padre) {
+		this.padre = padre;
+	}
+	
+	
+	
+	
+}

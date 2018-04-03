@@ -1,0 +1,9 @@
+package paquete;
+
+import java.util.ArrayList;
+public class Nodo {
+
+	private String camino;
+	private String resultado;
+	private ArrayList<Integer> hijos;
+}

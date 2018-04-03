@@ -1,0 +1,79 @@
+package paquete;
+
+import java.util.ArrayList;
+
+public class ID3 {
+	private Arbol arbol;
+
+	public ID3 (Tabla tablaInicial) {
+		arbol = new Arbol ();
+		Nodo nodo = new Nodo();
+		nodo.setTabla(tablaInicial);
+		algoritmoID3 (nodo, 0);
+	}
+	
+	public void algoritmoID3 (Nodo nodo, int posicion) {
+		//Añadimos el nodo al arbol
+		arbol.addNodo(nodo);
+		
+		// IF tabla del nodo no tiene elementos 
+			/*
+			 Se acabo el camino, ni hay hijos y poner como resultado no hay datos
+			 nodo.setResultado("No hay datos suficientes");
+			 */
+		if(!nodo.getTabla().tieneDatos()) {
+			nodo.setResultado("No hay datos");
+		}
+		// ELSE IF resultados en la nodo.getTabla() todos positivos o negativos
+			/*
+			 Se acabo este camino, no tiene hijos.
+			 nodo.setResultado("positivo" o "negativo");
+			 */
+		else if (nodo.getTabla().getValorDecisionTabla() != null) {
+			nodo.setResultado(nodo.getTabla().getValorDecisionTabla());
+		}
+		// ELSE
+			/*
+			Calculamos a partir de la tabla (nodo.getTabla()) el atributo con menor merito
+			Obtenemos el atributo de menor merito
+			nodo.setResultado(atributoMenorMerito)
+			Obtenemos las distintas opciones que tiene ese atributo
+			
+			Por cada opcion distinta, creamos un nuevo nodo
+			 for (String posibilidad : valoresAtributoMenorMerito) {
+			 	Nodo aux = new Nodo ();
+			 	aux.setCamino(posibilidad);
+			 	aux.setPadre(posicion);
+			 	nodo.addHijo(arbol.getSize());
+			 	//Calcular nueva tabla
+			 	nodo.setTabla (tablaCalculada);
+			 	
+			 	this.algoritmoID3 (aux, arbol.getSize());
+		
+			 */
+		else {
+			String atributoMenorMerito = nodo.getTabla().atributoMenorMerito();
+			nodo.setResultado(atributoMenorMerito);
+			ArrayList<String> opciones = nodo.getTabla().getPosibilidades(atributoMenorMerito);
+			
+			for (String opcion : opciones) {
+				Nodo aux = new Nodo();
+				aux.setCamino(opcion);
+				aux.setPadre(posicion);
+				nodo.addHijo(arbol.size());
+				aux.setTabla(nodo.getTabla().getNuevaTabla(atributoMenorMerito, opcion));
+				this.algoritmoID3(aux, arbol.size());
+			}
+		}
+		// END
+		
+	}
+	
+	public String determinar (String tiempoExterior, String temperatura, String humedad, String viento) {
+		return null;
+	}
+	
+	public Arbol getArbol () {
+		return arbol;
+	}
+}

@@ -1,0 +1,110 @@
+package paquete;
+
+import java.util.ArrayList;
+
+public class ID3 {
+	private Arbol arbol;
+
+	public ID3 (Tabla tablaInicial) {
+		arbol = new Arbol ();
+		//Aquí iniciamos el arbol y creamos el nodo inicial con la tabla inicial, y se llama al algoritmo
+		Nodo nodo = new Nodo();
+		nodo.setTabla(tablaInicial);
+		algoritmoID3 (nodo, 0);
+	}
+	
+	public void algoritmoID3 (Nodo nodo, int posicion) {
+		//Añadimos el nodo al arbol
+		arbol.addNodo(nodo);
+		/*
+		 Si la tabla no tiene elementos, significa que no hay datos suficientes
+		 Se acabo el camino, no hay hijos y el resultado es que no hay datos posibles para dar una resolución
+		 */
+		if(!nodo.getTabla().tieneDatos()) {
+			nodo.setResultado("No hay datos");
+		}
+
+		/*
+		 En caso de que si haya datos, y todos ellos la decisión sea sí o no, entonces también se termina
+		 el camino, y su resultado será aquel que se repita en todos (sí o no)
+		 */
+		else if (nodo.getTabla().getValorDecisionTabla() != null) {
+			nodo.setResultado(nodo.getTabla().getValorDecisionTabla());
+		}
+
+		/*
+		 En este caso, la tabla tiene datos y algunos la decisión es sí y en otros la decisión es no.
+		 Por lo tanto, hay que repetir el algoritmo ID3. Para ello, primero se obtiene el atributo con
+		 menor merito de la tabla, y por cada valor que tenga ese atributo (en caso de tiempo exterior, 
+		 seria soleado, nublado y lluvioso) se crea un nuevo nodo en el árbol y se vuelve a llamar al ID3
+		 para que repita todo el proceso
+		 */
+		else {
+			String atributoMenorMerito = nodo.getTabla().atributoMenorMerito();
+			nodo.setResultado(atributoMenorMerito);
+			ArrayList<String> opciones = nodo.getTabla().getPosibilidades(atributoMenorMerito);
+			
+			for (String opcion : opciones) {
+				//Se crea un nuevo nodo en el árbol
+				Nodo aux = new Nodo();
+				//El camino es la opción en cuestión
+				aux.setCamino(opcion);
+				//El padre de este nodo es el nodo actual, pasado como la posición en el array que
+				//representa el árbol de nodos
+				aux.setPadre(posicion);
+				//Se añade como hijo el nodo aux al nodo actual, representado con su posición en el array,
+				//siendo esta posicion la longitud del array en este momento
+				nodo.addHijo(arbol.size());
+				//Se crea la nueva tabla, sin tener en cuenta el atributo con menor merito y además
+				//cogiendo los datos de la tabla cuyo valor del atributo de menor merito sea el camino
+				//del nodo que se está creando
+				aux.setTabla(nodo.getTabla().getNuevaTabla(atributoMenorMerito, opcion));
+				//Por ultimo, se llama de nuevo a la función del algoritmo ID3
+				this.algoritmoID3(aux, arbol.size());
+			}
+		}
+		
+	}
+	
+	public String determinar (String tiempoExterior, String temperatura, String humedad, String viento) {
+		Nodo aux = arbol.getNodo(0);
+		
+		while (!aux.getResultado().equals("si") && !aux.getResultado().equals("no") && !aux.getResultado().equals("No hay dato")) {
+			aux = arbol.getNodo(determinarSiguienteNodo (tiempoExterior, temperatura, humedad, viento, aux));
+		}
+		return aux.getResultado();
+	}
+	
+	private int determinarSiguienteNodo (String tiempoExterior, String temperatura, String humedad, String viento, Nodo nodo) {
+		if(nodo.getResultado().equals("TiempoExterior")) {
+			return determinarHijo (tiempoExterior, nodo);
+		}
+		else if(nodo.getResultado().equals("Temperatura")) {
+			return determinarHijo (temperatura, nodo);
+		}
+		else if(nodo.getResultado().equals("Humedad")) {
+			return determinarHijo (humedad, nodo);
+		}
+		else if(nodo.getResultado().equals("Viento")) {
+			return determinarHijo (viento, nodo);
+		}
+		return -1;
+	}
+	
+	private int determinarHijo (String atributo, Nodo nodo) {
+		for (int hijo: nodo.getHijos()) {
+			if (arbol.getNodo(hijo).getCamino().equals(atributo)) {
+				return hijo;
+			}
+		}
+		return -1;
+	}
+	
+	public Arbol getArbol () {
+		return arbol;
+	}
+	
+	public void guardarArbol (String nombreFichero) {
+		
+	}
+}

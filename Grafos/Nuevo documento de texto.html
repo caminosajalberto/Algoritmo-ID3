@@ -1,0 +1,88 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="vis-master/dist/vis.js"></script>
+    <link href="vis-master/dist/vis.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        #mynetwork {
+            width: 1400px;
+            height: 800px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+
+<script type="text/javascript">
+    // create an array with nodes
+	//widthConstraint: { minimum: 100}, heightConstraint: { minimum: 50}
+    var nodes = new vis.DataSet([
+        {id: 1, label: 'Empleadora', level: 1},
+        {id: 2, label: 'Imagen', level: 2},
+        {id: 3, label: 'Modernidad', level: 3},
+        {id: 4, label: 'Poder profesional', level: 3},
+        {id: 5, label: 'Humanidad', level: 3},
+		{id: 20, label: 'Necesidades', level: 5},
+		{id: 21, label: 'Conciliación', level: 5},
+		{id: 22, label: 'Remuneración justa', level: 5},
+		{id: 23, label: 'Honestidad', level: 5},
+		{id: 6, label: 'Oportunidad única', level: 4},
+		{id: 7, label: 'Orgullo', level: 4},
+		{id: 8, label: 'Reputación', level: 4},
+		{id: 9, label: 'Valores coinciden', level: 4},
+		{id: 10, label: 'Eficiencia', level: 3},
+		{id: 13, label: 'Conocimiento', level: 2},
+		{id: 14, label: 'Interno', level: 3},
+		{id: 15, label: 'Externo', level: 3},
+		{id: 18, label: 'Competidores', level: 4},
+		{id: 19, label: 'Marcas comerciales', level: 4},
+		{id: 24, label: 'Experiencia', level: 2},
+		{id: 25, label: 'Diversión-acción', level: 3},
+		{id: 26, label: 'Relación', level: 3}
+    ]);
+
+    // create an array with edges
+    var edges = new vis.DataSet([
+        {from: 1, to: 2},
+		{from: 1, to: 13},
+        {from: 2, to: 3},
+        {from: 2, to: 4},
+        {from: 2, to: 10},
+		{from: 2, to: 5},
+		{from: 4, to: 6},
+		{from: 4, to: 7},
+        {from: 4, to: 8},
+        {from: 4, to: 9},
+		{from: 5, to: 20},
+		{from: 5, to: 21},
+		{from: 5, to: 22},
+		{from: 5, to: 23},
+		{from: 13, to: 14},
+        {from: 13, to: 15},
+		{from: 15, to: 18},
+		{from: 15, to: 19},
+		{from: 1, to: 24},
+		{from: 24, to: 25},
+		{from: 24, to: 26},
+    ]);
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+
+    // provide the data in the vis format
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {
+		physics: { enabled: false },
+        layout: { hierarchical: {enabled:true, levelSeparation: 100} }
+		};
+
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+</script>
+</body>
+</html>

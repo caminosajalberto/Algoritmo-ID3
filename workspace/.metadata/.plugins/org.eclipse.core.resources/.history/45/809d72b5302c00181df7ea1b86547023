@@ -1,0 +1,26 @@
+package paquete;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		try {
+			Scanner sc = new Scanner (new File ("AtributosJuego.txt"));
+			
+			String texto = sc.next();
+			String [] atributos = texto.split(",");
+			sc.close();
+			System.out.println(a + " " + b);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

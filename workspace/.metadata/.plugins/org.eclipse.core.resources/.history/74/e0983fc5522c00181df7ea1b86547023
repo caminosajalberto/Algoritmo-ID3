@@ -1,0 +1,13 @@
+package paquete;
+
+public class Celda {
+	private double p;
+	private double n;
+	private double r;
+	
+	public Celda (int p, int n, int r) {
+		this.p = p;
+		this.n = n;
+		this.r = r;
+	}
+}

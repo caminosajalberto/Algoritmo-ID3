@@ -1,0 +1,17 @@
+package paquete;
+
+public class ID3 {
+	private Arbol arbol;
+
+	public ID3 () {
+		arbol = new Arbol ();
+	}
+	
+	public void algoritmoID3 (Nodo nodoInicial) {
+		
+	}
+	
+	public Arbol getArbol () {
+		return arbol;
+	}
+}

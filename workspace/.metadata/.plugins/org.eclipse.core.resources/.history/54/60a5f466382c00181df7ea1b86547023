@@ -1,0 +1,18 @@
+package paquete;
+
+import java.util.ArrayList;
+
+public class Arbol {
+	private ArrayList<Nodo> arbol;
+	
+	public Arbol() {
+		arbol = new ArrayList<Nodo>();
+	}
+	
+	public Arbol (Nodo nodoInicial) {
+		arbol = new ArrayList<Nodo>();
+		arbol.add(nodoInicial);
+	}
+	
+	
+}

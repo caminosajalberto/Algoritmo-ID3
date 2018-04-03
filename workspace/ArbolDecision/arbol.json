@@ -1,0 +1,13 @@
+[
+{"camino":"null","resultado":"Ingresos","hijos":[1,7,10],"padre":"-1"}
+,{"camino":"600-1200","resultado":"Moroso","hijos":[2,6],"padre":"0"}
+,{"camino":"Si","resultado":"Antiguedad","hijos":[3,4,5],"padre":"1"}
+,{"camino":">5","resultado":"si","hijos":[],"padre":"2"}
+,{"camino":"<1","resultado":"No hay datos","hijos":[],"padre":"2"}
+,{"camino":"1-5","resultado":"no","hijos":[],"padre":"2"}
+,{"camino":"No","resultado":"no","hijos":[],"padre":"1"}
+,{"camino":">1200","resultado":"Moroso","hijos":[8,9],"padre":"0"}
+,{"camino":"Si","resultado":"no","hijos":[],"padre":"7"}
+,{"camino":"No","resultado":"si","hijos":[],"padre":"7"}
+,{"camino":"<600","resultado":"no","hijos":[],"padre":"0"}
+]

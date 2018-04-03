@@ -1,0 +1,30 @@
+package paquete;
+
+public class Celda {
+	private double p;
+	private double n;
+	private double r;
+	private double informacion;
+	
+	public Celda (double p, double n, double r) {
+		this.p = p;
+		this.n = n;
+		this.r = r;
+	}
+	
+	public double getP () {
+		return p;
+	}
+	
+	public double getN () {
+		return n;
+	}
+	
+	public double getR () {
+		return r;
+	}
+	
+	public double getInformacion () {
+		return informacion;
+	}
+}

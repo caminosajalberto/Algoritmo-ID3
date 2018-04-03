@@ -1,0 +1,32 @@
+package paquete;
+
+public class ID3 {
+	private Arbol arbol;
+
+	public ID3 () {
+		arbol = new Arbol ();
+	}
+	
+	public void algoritmoID3 (Nodo nodo, int padre) {
+		//Añadimos el nodo al arbol
+		nodo.setPadre(padre);
+		arbol.addNodo(nodo);
+		
+		//Calculamos a partir de la tabla el atributo con menor merito
+		//Obtenemos el atributo de menor merito
+		/* nodo.setResultado(atributoMenorMerito) */
+		//Obtenemos las distintas opciones que tiene ese atributo
+		
+		//Por cada opcion distinta, creamos un nuevo nodo
+		/*
+		 for (String posibilidad : atributos) {
+		 	Nodo aux = new Nodo ();
+		 	aux.setCamino(psoibilidad)
+		 */
+		
+	}
+	
+	public Arbol getArbol () {
+		return arbol;
+	}
+}

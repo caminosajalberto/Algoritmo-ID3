@@ -1,0 +1,44 @@
+package paquete;
+
+import java.util.ArrayList;
+
+public class Arbol {
+	private ArrayList<Nodo> arbol;
+	
+	public Arbol() {
+		arbol = new ArrayList<Nodo>();
+	}
+	
+	public Arbol (Nodo nodoInicial) {
+		arbol = new ArrayList<Nodo>();
+		arbol.add(nodoInicial);
+	}
+	
+	public void addNodo (Nodo n) {
+		arbol.add(n);
+	}
+	
+	public Nodo getNodo(int posicion) {
+		if (posicion >= 0 && posicion < arbol.size()){
+			return arbol.get(posicion);
+		}
+		return null;
+	}
+	
+	public Nodo getNodoInicial () {
+		return arbol.get(0);
+	}
+	
+	public int size () {
+		return arbol.size();
+	}
+	
+	public String arbolToJSON () {
+		String JSON = "[";
+		for (Nodo n : arbol) {
+			JSON += n.nodoToJSON() + ",";
+		}
+		JSON += "]";
+		return JSON;
+	}
+}

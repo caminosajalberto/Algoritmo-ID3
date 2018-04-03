@@ -1,0 +1,10 @@
+[
+{"camino":"null","resultado":"TiempoExterior","hijos":[1,4,5],"padre":"-1"}
+,{"camino":"soleado","resultado":"Humedad","hijos":[2,3],"padre":"0"}
+,{"camino":"alta","resultado":"no","hijos":[],"padre":"1"}
+,{"camino":"normal","resultado":"si","hijos":[],"padre":"1"}
+,{"camino":"nublado","resultado":"si","hijos":[],"padre":"0"}
+,{"camino":"lluvioso","resultado":"Viento","hijos":[6,7],"padre":"0"}
+,{"camino":"falso","resultado":"si","hijos":[],"padre":"5"}
+,{"camino":"verdad","resultado":"no","hijos":[],"padre":"5"}
+]

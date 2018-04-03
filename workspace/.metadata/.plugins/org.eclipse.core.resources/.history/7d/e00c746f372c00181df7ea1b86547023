@@ -1,0 +1,19 @@
+package paquete;
+
+import java.util.ArrayList;
+public class Nodo {
+
+	private String camino;
+	private String resultado;
+	private ArrayList<Integer> hijos;
+	private Tabla tabla;
+	private int padre;
+	
+	public Nodo () {
+		camino = null;
+		resultado = null;
+		hijos = new ArrayList<Integer>();
+		tabla = null;
+		padre = -1;
+	}
+}

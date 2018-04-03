@@ -1,0 +1,54 @@
+package paquete;
+
+public class ID3 {
+	private Arbol arbol;
+
+	public ID3 (Nodo nodo) {
+		arbol = new Arbol ();
+		algoritmoID3 (nodo, 0);
+	}
+	
+	public void algoritmoID3 (Nodo nodo, int posicion) {
+		//Añadimos el nodo al arbol
+		arbol.addNodo(nodo);
+		
+		// IF tabla del nodo no tiene elementos 
+			/*
+			 Se acabo el camino, ni hay hijos y poner como resultado no hay datos
+			 nodo.setResultado("No hay datos suficientes");
+			 */
+		if(!nodo.getTabla().tieneDatos()) {
+			nodo.setResultado("ND");
+		}
+		// ELSE IF resultados en la nodo.getTabla() todos positivos o negativos
+			/*
+			 Se acabo este camino, no tiene hijos.
+			 nodo.setResultado("positivo" o "negativo");
+			 */
+		// ELSE
+			/*
+			Calculamos a partir de la tabla (nodo.getTabla()) el atributo con menor merito
+			Obtenemos el atributo de menor merito
+			nodo.setResultado(atributoMenorMerito)
+			Obtenemos las distintas opciones que tiene ese atributo
+			
+			Por cada opcion distinta, creamos un nuevo nodo
+			 for (String posibilidad : valoresAtributoMenorMerito) {
+			 	Nodo aux = new Nodo ();
+			 	aux.setCamino(posibilidad);
+			 	aux.setPadre(posicion);
+			 	nodo.addHijo(arbol.getSize());
+			 	//Calcular nueva tabla
+			 	nodo.setTabla (tablaCalculada);
+			 	
+			 	this.algoritmoID3 (aux, arbol.getSize());
+		
+			 */
+		// END
+		
+	}
+	
+	public Arbol getArbol () {
+		return arbol;
+	}
+}
